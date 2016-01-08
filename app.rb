@@ -19,13 +19,14 @@ helpers do
 end
 
 
-# Respond to HTTP POST requests sent to this web service
-post '/' do
-  request.body.rewind
-  data = request.body.read
-  verified = verify_webhook(data, env["HTTP_X_SHOPIFY_HMAC_SHA256"])
+class ShopifyWebhook < Sinatra::Base
+  # Respond to HTTP POST requests sent to this web service
+  post '/' do
+    request.body.rewind
+    data = request.body.read
+    verified = verify_webhook(data, env["HTTP_X_SHOPIFY_HMAC_SHA256"])
 
-  # Output 'true' or 'false'
-  puts "Webhook verified: #{verified}"
+    # Output 'true' or 'false'
+    puts "Webhook verified: #{verified}"
+  end
 end
-
