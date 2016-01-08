@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html manifest="/easygard.appcache">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Easygard Mobile Amtgard</title>
+	<link rel="apple-touch-icon" href="/apple-touch-iphone.png" />
+	<link rel="stylesheet" href="/lib/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="/lib/jqm-demos.css">
+	<script src="/lib/jquery.min.js"></script>
+	<script src="/lib/index.js"></script>
+	<script src="/lib/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-57944446-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script>
+	function onUpdateReady() {
+		$( "#easygard-updated-popup" ).popup( "open" )
+	}
+	window.applicationCache.addEventListener('updateready', onUpdateReady);
+	if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+		onUpdateReady();
+	}
+	</script>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
