@@ -1,3 +1,3 @@
 require './app'
 
-run ShopifyWebhook
+run Sinatra::Application

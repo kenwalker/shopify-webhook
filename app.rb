@@ -6,6 +6,8 @@ require 'sinatra'
 # The Shopify app's shared secret, viewable from the Partner dashboard
 SHARED_SECRET = 'my_shared_secret'
 
+puts "STARTING WEBHOOK RECEIVER"
+
 helpers do
   # Compare the computed HMAC digest based on the shared secret and the request contents
   # to the reported HMAC in the headers
@@ -16,14 +18,14 @@ helpers do
   end
 end
 
-class ShopifyWebhook < Sinatra::Base
-  # Respond to HTTP POST requests sent to this web service
-  post '/' do
-    request.body.rewind
-    data = request.body.read
-    verified = verify_webhook(data, env["HTTP_X_SHOPIFY_HMAC_SHA256"])
 
-    # Output 'true' or 'false'
-    puts "Webhook verified: #{verified}"
-  end
+# Respond to HTTP POST requests sent to this web service
+post '/' do
+  request.body.rewind
+  data = request.body.read
+  verified = verify_webhook(data, env["HTTP_X_SHOPIFY_HMAC_SHA256"])
+
+  # Output 'true' or 'false'
+  puts "Webhook verified: #{verified}"
 end
+
